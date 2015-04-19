@@ -20,7 +20,7 @@ int main(int argc, char** argv) {
     FILE *puntafile;
     studente alunno;
     int i;
-    puntafile=fopen("elenco.dat", "w");
+    puntafile=fopen("elenco.dat", "wb");
     
     for (i=0;i<N;i++){
         printf("Studente %d:\n", i+1);
@@ -32,7 +32,7 @@ int main(int argc, char** argv) {
         scanf("%d", &alunno.eta);
 	printf("Classe: ");
 	scanf("%s", alunno.classe);
-        fprintf(puntafile,"%s; %s; %d; %s", alunno.nome, alunno.cognome, alunno.eta, alunno.classe);
+        fwrite(&alunno,sizeof(alunno),1,puntafile);
     }
     fclose(puntafile);
     return (EXIT_SUCCESS);
